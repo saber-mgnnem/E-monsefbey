@@ -11,8 +11,7 @@
             <div class="d-flex p-1 bg-primary-subtle rounded-3 mail-input">
                 <x-feathericon-mail class="icons"/>
                 <input type="text" placeholder="Entrez E-mail" class="form-control bg-primary-subtle border-0 pr-8">
-                <button class="btn">Homme</button>
-                <button class="btn">Femme</button>
+               
             </div>
             <div class="d-flex align-items-center mt-3">
                 <input type="checkbox" class="custom-checkbox"/>

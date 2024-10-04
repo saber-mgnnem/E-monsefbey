@@ -1,4 +1,4 @@
-<nav class="fixed-top navbar navbar-expand-lg navbar-dark  bg-dark nav text-bg-dark   " >
+<nav class="fixed-top navbar navbar-expand-lg navbar-dark  bg-dark nav text-bg-dark mb-5" >
   <div class="container  ">
     <a class="navbar-brand title" href="{{ url('/') }}">
         <img src="{{ asset('assets/images/logoW.png') }}"  class="card-img-nav">
@@ -8,7 +8,7 @@
         <x-eva-search-outline class=" icons"/>
 
         <input type="text" placeholder="Recherche par titre" class="form-control bg-primary-subtle border-0 "/>
-        <button class="btn">recherche</button>
+        <button class="btn btn-recherche">recherche</button>
     </div>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
@@ -16,17 +16,6 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Accueille</a>
         </li>
-
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Categories
-            </a>
-            <ul class="dropdown-menu">
-              @foreach($category as $cate)
-                <li><a class="dropdown-item" href="{{url('category/product'.$cate->id)}}">{{$cate->name}}</a></li>
-              @endforeach
-            </ul>
-          </li>
         @if(Auth::check())
         <li class="nav-item">
           <a class="nav-link" href="{{url('category')}}">Categories</a>
@@ -68,15 +57,18 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="{{ route('logout') }}"></a>
+
+                                    <a class="dropdown-item"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Se déconnecter') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
+                                       @csrf
                                     </form>
+
                                 </div>
                             </li>
                         @endguest
@@ -101,12 +93,12 @@
     .search-input input {
         padding-left: 30px;
     }
-    .btn{
+    .btn-recherche{
         border-color:#FFF;
         margin: 0 10px;
         color: #fff;
     }
-    .btn:hover{
+    .btn-recherche:hover{
         border-color:rgb(196, 94, 46);
         color: rgb(196, 94, 46);
     }

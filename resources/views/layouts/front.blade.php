@@ -39,7 +39,8 @@
 
                 <div class="wrapper ">
                 @include('layouts.inc.frontnavbar')
-                         <div class="content">
+                         <div class="mt-2">hh</div>
+                         <div class="content mt-5">
                                @yield("content")
 
                          </div>

@@ -8,7 +8,7 @@ Cart
 <div class="py-3 mb-4 shadow-sm bg-warning border-top">
     <div class="container">
         <h4 class="mb-0">
-            <a href="{{url('/')}}"> Accueille</a>/ 
+            <a href="{{url('/')}}"> Accueille</a>/
             <a href="{{url('cart')}}"> Panier</a>
 
         </h4>
@@ -26,8 +26,8 @@ Cart
                         <div class="row  product_data">
 
                                 <div class="col-md-2" >
-                                    <img src="{{asset('assets/uploads/product/'.$item->products->image)}}" style="width:120px; height:100px;   margin-bottom: 25px;" alt="c'est un image">  
-                                </div> 
+                                    <img src="{{asset('assets/uploads/product/'.$item->products->image)}}" style="width:120px; height:100px;   margin-bottom: 25px;" alt="c'est un image">
+                                </div>
                                 <div class="col-md-4 my-auto">
                                     <h5> {{$item->products->name}}</h5>
                                 </div>
@@ -44,7 +44,7 @@ Cart
                                                     <button class="input-group-text changequantity increment-btn">+</button>
                                                 </div>
                                                 @php $total += $item->products->selling_price*$item->prod_qty ; @endphp
-                                                @else 
+                                                @else
                                                 <h6 style="color:red;"> Rupture de stock</h6>
                                             @endif
                                     </div>
@@ -53,7 +53,7 @@ Cart
                                 <button type="button" class="btn btn-danger me-3  my-auto delete-prod-item">Supprimer <i class="fas fa-trash"></i> </button>
                                 </div>
                         </div>
-                
+
 
                         @endforeach
                 </div>
@@ -61,7 +61,7 @@ Cart
                     <h6 >Total Price : {{$total}}</h6>
                     <a href="checkout" class="btn btn-outline-success  float-end">Passer à la caisse</a>
                 </div>
-        @else 
+        @else
           <div class="card-body text-center">
             <h2> Votre panier est vide</h2>
             <a href="{{url('category')}}" class="btn btn-primary float-end">Continuer vos achats</a>

@@ -7,7 +7,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\WishlistController;
-
+use App\Http\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +24,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+Auth::routes();
+
 Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
 Route::get('category', [App\Http\Controllers\Frontend\FrontendController::class, 'category']);
 Route::get('category/{cate_slug}/{prod_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewproduct']);
-Route::get('category/product/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewcategory']);
-
+Route::get('category/{slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewcategory']);
 
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -52,9 +53,10 @@ Route::middleware( ['auth'])->group (function () {
 
 });
 Route::middleware( ['auth','isAdmin'])->group (function () {
+    Route::get('calendar', 'App\Http\Controllers\Admin\FrontendController@showCalendar');
 
    Route::get('/dashboard','App\Http\Controllers\Admin\FrontendController@index');
-   Route::get('categories','App\Http\Controllers\Admin\CatController@index');
+   Route::get('categories','App\Http\Controllers\Admin\CategoryController@index');
    Route::get('add-category','App\Http\Controllers\Admin\CategoryController@add');
    Route::post('insert-category','App\Http\Controllers\Admin\CategoryController@insert');
    Route::get('/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit']);

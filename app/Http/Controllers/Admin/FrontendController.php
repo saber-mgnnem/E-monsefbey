@@ -9,6 +9,10 @@ class FrontendController extends Controller
 {
     //
     public function index(){
-        return view("admin.index")->with('status','');
+        return view("admin.app")->with('status','');
+    }
+    public function showCalendar()
+    {
+        return view('Admin.components.calendar.calendar');
     }
 }

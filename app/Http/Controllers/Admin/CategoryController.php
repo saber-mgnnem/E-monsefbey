@@ -10,23 +10,23 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    //  
-   
-    
+    //
+
+
     public function index(){
         $category = Category::all();
 
-        return view('admin.category.index',compact('category'));
+        return view('admin.components.category.index',compact('category'));
     }
 
     public function add(){
 
-        return view('admin.category.add');
+        return view('admin.components.category.add');
     }
     public function insert(Request $request){
-       
+
         $category = new Category();
-       
+
 
         $category->name = $request->input('name');
         $category->slug = $request->input('slug');
@@ -46,14 +46,14 @@ class CategoryController extends Controller
         $category->save();
         return redirect('/dashboard')->with('add-status','Catégorie ajoutée avec succès');
 
-        
+
 
     }
     public function edit($id){
         $category = Category::Find($id);
-       return view('admin.category.Edit' , compact('category'));
+       return view('admin.components.category.Edit' , compact('category'));
     }
-    
+
     public function update(Request $request,$id){
 
         $category = Category::Find($id);
@@ -91,8 +91,8 @@ class CategoryController extends Controller
         if(File::exists ($path))
         {
            File::delete('public/assets/uploads/category'.$category->image);
-        } 
-        $category->delete();  
+        }
+        $category->delete();
       }
       return redirect('/dashboard')->with('status','Categorie Supprimer avec  succès');
 

@@ -15,17 +15,17 @@ class ProductController extends Controller
     public function index(){
         $product = Product::all();
 
-        return view('admin.product.index',compact('product'));
+        return view('admin.components.product.index',compact('product'));
     }
     public function add(){
         $category = Category::all();
 
-        return view('admin.product.add' ,compact('category'));
+        return view('admin.components.product.add' ,compact('category'));
     }
     public function insert(Request $request){
-       
+
         $product = new Product();
-       
+
         $product->cate_id = $request->input('cate_id');
         $product->name = $request->input('name');
         $product->slug = $request->input('slug');
@@ -51,14 +51,14 @@ class ProductController extends Controller
         $product->save();
         return redirect('products')->with('add-status','produit ajoutée avec succès');
 
-        
+
 
     }
 
 
     public function edit($id){
         $product = Product::Find($id);
-       return view('admin.product.edit' , compact('product'));
+       return view('admin.components.product.edit' , compact('product'));
     }
 
 
@@ -79,8 +79,8 @@ class ProductController extends Controller
             $file->move('assets/uploads/product', $filename);
             $product->image=$filename;
         }
-    
-         
+
+
         $product->name = $request->input('name');
         $product->slug = $request->input('slug');
         $product->Small_description = $request->input('small_description');
@@ -108,8 +108,8 @@ class ProductController extends Controller
         if(File::exists ($path))
         {
            File::delete('public/assets/uploads/product'.$product->image);
-        } 
-        $product->delete();  
+        }
+        $product->delete();
       }
       return redirect('products')->with('status','Produit supprimer avec succès');
 
