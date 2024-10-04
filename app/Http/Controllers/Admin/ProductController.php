@@ -57,8 +57,8 @@ class ProductController extends Controller
 
 
     public function edit($id){
-        $product = Product::Find($id);
-       return view('admin.components.product.edit' , compact('product'));
+        $product = Product::with('category')->find($id); // Eager load the category
+        return view('admin.components.product.edit' , compact('product'));
     }
 
 

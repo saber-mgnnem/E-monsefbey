@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('content')
-    <div class="card">
+    <div class="card mt-3">
        <div class="card-header">
 
                <h3>Edit product Page</h3>
@@ -17,11 +17,13 @@
 
                     <div class="col-md-12 mb-3">
                         <select class="form-select" name="cate_id">
-                        <option value="">{{$product->category->name}}</option>
-
-
+                            <option value="">
+                                {{ $product->category ? $product->category->name : 'No category selected' }}
+                            </option>
                         </select>
                     </div>
+
+
                     <div class="col-md-6 mb-3">
                        <label for="">Name</label>
                        <input type="text" class="form-control"  value="{{$product->name}}" name="name">
@@ -90,17 +92,17 @@
                        <textarea rows="3" class="form-control"   name="meta_description">{{$product->meta_description}}</textarea>
                     </div>
 
-                    @if($product->image){
-                     <img src="{{ asset('/assets/uploads/product/'.$product->image)}}" >
-                     }
+                    @if($product->image)
+                     <img src="{{ asset('/assets/uploads/product/'.$product->image)}}" style="width: 200px !important; margin-left: 2.5rem !important;">
+
                      @endif
                     <div class="col-md-6 mb-3">
                        <input type="file" class="form-control" name="image">
                     </div>
 
 
-                    <div class="col-md-6 mb-3">
-                       <button type="submit" class="btn btn-primary" name="image">Submit</button>
+                    <div class="col-md-6 mb-3 mt-5 d-flex justify-content-end">
+                        <button type="submit" class="main-btn primary-btn btn-hover">Submit</button>
                     </div>
                 </div>
             </form>
